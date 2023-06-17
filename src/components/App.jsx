@@ -1,16 +1,18 @@
-import { NavLink, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Films from "./pages/Films";
+import FilmDitalis from "./pages/FilmDetails";
+import Leyout from "./pages/Leyout";
 
 export const App = () => {
   return (
     <div>
-      <nav>
-        <NavLink to="/">Домашня</NavLink>
-        <NavLink to="/films">Колекція</NavLink>
-      </nav>
       <Routes>
-        <Route path="/" element={<div>Домашня</div>} />
-        <Route path="/films" element={<div>Колекція</div>} />
-        <Route path="/films/:filmsId" element={<div><img src='https://upload.wikimedia.org/wikipedia/en/thumb/0/02/HJK_Helsinki_Logo.svg/1200px-HJK_Helsinki_Logo.svg.png'/></div>} />
+        <Route path="/" element={<Leyout />}>
+          <Route index element={<Home />} />
+          <Route path="films" element={<Films />} />
+          <Route path="films/:filmsId" element={<FilmDitalis/>} />
+        </Route>
       </Routes>
     </div>
   );
