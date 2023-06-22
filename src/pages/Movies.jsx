@@ -2,31 +2,31 @@ import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 
 
-const Films = () => {
-const [films, setFilms] = useState([ "film-1", "film-2", "film-3", "film-4", "film-5" ]);
+const Movies = () => {
+const [movies, setMovies] = useState([ "movie-1", "movie-2", "movie-3", "movie-4", "movie-5" ]);
     const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
-    const filmsId = searchParams.get('filmsId') ?? '';
+    const movieId = searchParams.get('movieId') ?? '';
     
     const updateQueryString = e => {
-        const filmIdValue = e.target.value;
-        if(filmIdValue === '') {
+        const movieIdValue = e.target.value;
+        if(movieIdValue === '') {
             return setSearchParams({});
         } 
-        setSearchParams({ filmsId: filmIdValue });
+        setSearchParams({ movieId: movieIdValue });
     }
 
-    const visibleFilms = films.filter(film => film.includes(filmsId))
+    const visibleMovies = movies.filter(movie => movie.includes(movieId))
 
     console.log(location)
     return <div>
         <input type="text" onChange={updateQueryString}/>
         <ul>
-        {visibleFilms.map(film => {
+        {visibleMovies.map(movie => {
         return (
             <li>
-                <Link key={film} state={{ from: location }} to={`${film}`}>
-            {film}
+                <Link key={movie} state={{ from: location }} to={`${movie}`}>
+            {movie}
         </Link>
             </li>
         )
@@ -35,4 +35,4 @@ const [films, setFilms] = useState([ "film-1", "film-2", "film-3", "film-4", "fi
         </div>
 }
 
-export default Films;
+export default Movies;

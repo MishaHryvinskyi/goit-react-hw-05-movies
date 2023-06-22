@@ -5,10 +5,10 @@ const Leyout = () => {
         <nav>
             <ul>
                 <li>
-                    <NavLink to="/">Домашня</NavLink>
+                    <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/films">Колекція</NavLink>
+                    <NavLink to="/movies">Movies</NavLink>
                 </li>
             </ul>
         </nav>
