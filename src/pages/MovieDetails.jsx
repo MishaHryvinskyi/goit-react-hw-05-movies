@@ -4,7 +4,7 @@ import {
   getMoviesById,
   getCast,
   getReviews,
-} from "../components/API/API"; // Підключаємо функції отримання даних з сервера
+} from "../components/API/API"; 
 
 const MovieDetails = () => {
   const { movieId } = useParams();
