@@ -1,18 +1,19 @@
 import React from "react";
+import { ContainerReviews, ReviewsTitle, ReviewsAuthor, ReviewsList, ReviewsContent } from './Reviews.styled.jsx'
 
 const Reviews = ({ reviews }) => {
   return (
-    <div>
-      <h2>Reviews</h2>
+    <ContainerReviews>
+      <ReviewsTitle>Reviews</ReviewsTitle>
       <ul>
         {reviews.map((review) => (
-          <li key={review.id}>
-            <h3>{review.author}</h3>
-            <p>{review.content}</p>
-          </li>
+          <ReviewsList key={review.id}>
+            <ReviewsAuthor>{review.author}</ReviewsAuthor>
+            <ReviewsContent>{review.content}</ReviewsContent>
+          </ReviewsList>
         ))}
       </ul>
-    </div>
+    </ContainerReviews>
   );
 };
 

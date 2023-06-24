@@ -31,9 +31,18 @@ export const CastListItem = styled.li`
 
 export const CastImg = styled.img`
     border-radius: 10px 10px 0  0 ;
+    margin-bottom: 10px;
 `;
 
-export const CastParagraph = styled.p`
+export const CastParagraph = styled.h4`
     text-align: center;
     color: #f3cba5;
+`;
+
+export const CastRole = styled.p`
+    width: 80px;   
+    text-align: center;
+    color: #f3cba5;
+    margin-left: auto;
+    margin-right: auto;
 `;

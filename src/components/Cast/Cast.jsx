@@ -1,5 +1,13 @@
 import React from "react";
-import { CastContainer, TitleCast, CastList, CastListItem, CastImg, CastParagraph } from './Cast.styled';
+import { 
+  CastContainer, 
+  TitleCast, 
+  CastList, 
+  CastListItem, 
+  CastImg, 
+  CastParagraph, 
+  CastRole 
+} from './Cast.styled';
 
 const Cast = ({ cast }) => {
   const defaultImage = "https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-20.jpg";
@@ -17,6 +25,7 @@ const Cast = ({ cast }) => {
               height="300"
             />
             <CastParagraph>{actor.name}</CastParagraph>
+            <CastRole>{actor.character}</CastRole>
           </CastListItem>
         ))}
       </CastList>
