@@ -1,25 +1,26 @@
 import React from "react";
+import { CastContainer, TitleCast, CastList, CastListItem, CastImg, CastParagraph } from './Cast.styled';
 
 const Cast = ({ cast }) => {
   const defaultImage = "https://icon-library.com/images/no-photo-available-icon/no-photo-available-icon-20.jpg";
 
   return (
-    <div>
-      <h2>Cast</h2>
-      <ul>
+    <CastContainer>
+      <TitleCast>Cast</TitleCast>
+      <CastList>
         {cast.map((actor) => (
-          <li key={actor.id}>
-            <img
+          <CastListItem key={actor.id}>
+            <CastImg
               src={actor.profile_path ? `https://image.tmdb.org/t/p/w200${actor.profile_path}` : defaultImage}
               alt={actor.name}
               width="200"
               height="300"
             />
-            <p>{actor.name}</p>
-          </li>
+            <CastParagraph>{actor.name}</CastParagraph>
+          </CastListItem>
         ))}
-      </ul>
-    </div>
+      </CastList>
+    </CastContainer>
   );
 };
 
