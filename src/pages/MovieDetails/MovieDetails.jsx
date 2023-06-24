@@ -1,8 +1,15 @@
 import { useParams, Link, useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import { getMoviesById, getCast, getReviews } from "../components/API/API";
-import Reviews from "../components/Reviews/Review";
-import Cast from "../components/Cast/Cast";
+import { getMoviesById, getCast, getReviews } from "../../components/API/API";
+import Reviews from "../../components/Reviews/Review";
+import Cast from "../../components/Cast/Cast";
+import { 
+  ContainerMovie, 
+  MovieTitle,
+  MovieImg,
+  ContainerWrap,
+  ParagraphMovie
+ } from './ContainerSerch.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -12,7 +19,7 @@ const MovieDetails = () => {
   const [cast, setCast] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [showCast, setShowCast] = useState(false);
-  const [showReviews, setShowReviews] = useState(false); // Додано стан для відстеження з'явлення компонента Reviews
+  const [showReviews, setShowReviews] = useState(false); 
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -46,42 +53,44 @@ const MovieDetails = () => {
     if (showCast) {
       fetchCast();
     }
-    if (showReviews) { // Завантажуйте відгуки, тільки якщо showReviews === true
+    if (showReviews) { 
       fetchReviews();
     }
-  }, [movieId, showCast, showReviews]); // Додано showReviews до залежностей ефекту
+  }, [movieId, showCast, showReviews]); 
 
   const handleShowCast = () => {
     setShowCast(true);
   };
 
   const handleShowReviews = () => {
-    setShowReviews(true); // Встановлюємо showReviews в true при натисканні на посилання
+    setShowReviews(true); 
   };
 
   return (
     <div>
       {movieDetails ? (
-        <div>
-          <h1>Деталі про фільм: {movieDetails.title}</h1>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-            alt={movieDetails.title}
-          />
-          <p>Огляд: {movieDetails.overview}</p>
-          <p>Рейтинг: {movieDetails.vote_average}</p>
-          <p>Дата виходу: {movieDetails.release_date}</p>
-        </div>
+        <ContainerMovie>
+            <MovieImg
+              src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+              alt={movieDetails.title}
+            />
+          <ContainerWrap>
+          <MovieTitle>{movieDetails.title}</MovieTitle>
+            <ParagraphMovie><b>Review:</b> {movieDetails.overview}</ParagraphMovie>
+            <ParagraphMovie><b>Rating:</b>Rating: {movieDetails.vote_average}</ParagraphMovie>
+            <ParagraphMovie><b>Release date:</b> {movieDetails.release_date}</ParagraphMovie>
+          </ContainerWrap>
+        </ContainerMovie>
       ) : (
-        <p>Завантаження...</p>
+        <p>Loading...</p>
       )}
 
       {showCast && cast.length > 0 && <Cast cast={cast} />}
 
-      {showReviews && reviews.length > 0 && <Reviews reviews={reviews} />} {/* Відображаємо компонент Reviews, якщо showReviews === true і reviews.length > 0 */}
+      {showReviews && reviews.length > 0 && <Reviews reviews={reviews} />} 
 
       <Link to={`/movies/${movieId}/cast`} onClick={handleShowCast}>Переглянути акторський склад</Link>
-      <Link to={`/movies/${movieId}/reviews`} onClick={handleShowReviews}>Переглянути відгуки</Link> {/* Додано посилання для показу відгуків */}
+      <Link to={`/movies/${movieId}/reviews`} onClick={handleShowReviews}>Переглянути відгуки</Link> 
       <Link to={backLinkLocationRef.current}>Назад до сторінки колекції</Link>
     </div>
   );

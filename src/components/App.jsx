@@ -1,7 +1,7 @@
 import { Route, Routes, Link, useNavigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Movies from "../pages/Movies";
-import MovieDetails from "../pages/MovieDetails";
+import MovieDetails from "../pages/MovieDetails/MovieDetails";
 import Cast from "../components/Cast/Cast";
 import Reviews from "../components/Reviews/Review";
 import Leyout from "../pages/Leyout";

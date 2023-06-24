@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const ContainerReviews = styled.div`
-    padding: 40px;
+    padding: 80px;
     background-color: #453953;
 `;
 
