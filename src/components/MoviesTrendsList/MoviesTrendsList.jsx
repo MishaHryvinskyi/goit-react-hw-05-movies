@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getTrendsDayMovies } from '../API/API';
+import { Link } from 'react-router-dom';
 import { 
     ContainerMovie,
     MovieTrendList,
@@ -8,7 +9,6 @@ import {
     MovieTrendTitle,
     MovieTitle 
 } from './MoviesTrendsListStyled';
-
 
 const MoviesTrendsList = () => {
   const [movies, setMovies] = useState([]);
@@ -32,13 +32,15 @@ const MoviesTrendsList = () => {
       <MovieTitle>Trending Movies Today</MovieTitle>
       <MovieTrendList>
         {movies.map(movie => (
-          <MovieTrendListItem key={movie.id}>
-            <MovieTrendImg
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <MovieTrendTitle>{movie.title}</MovieTrendTitle>
-          </MovieTrendListItem>
+          <Link key={movie.id} to={`/movies/${movie.id}`}>
+            <MovieTrendListItem>
+              <MovieTrendImg
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <MovieTrendTitle>{movie.title}</MovieTrendTitle>
+            </MovieTrendListItem>
+          </Link>
         ))}
       </MovieTrendList>
     </ContainerMovie>

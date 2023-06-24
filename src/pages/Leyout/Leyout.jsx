@@ -1,16 +1,17 @@
 import { Outlet, NavLink } from "react-router-dom";
+import { LeyoutList, LeyoutItem } from './Leyout.styled';
 
 const Leyout = () => {
     return <div>
         <nav>
-            <ul>
-                <li>
+            <LeyoutList>
+                <LeyoutItem>
                     <NavLink to="/">Home</NavLink>
-                </li>
-                <li>
+                </LeyoutItem>
+                <LeyoutItem>
                     <NavLink to="/movies">Movies</NavLink>
-                </li>
-            </ul>
+                </LeyoutItem>
+            </LeyoutList>
         </nav>
         <main>
             <Outlet />

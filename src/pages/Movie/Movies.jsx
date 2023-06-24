@@ -1,6 +1,8 @@
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getSearchMovies } from "../components/API/API";
+import { getSearchMovies } from "../../components/API/API";
+import { MovieContainer, MovieList, MovieInput } from './Movies.styled';
+
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -31,9 +33,9 @@ const Movies = () => {
   }, [movieId]);
 
   return (
-    <div>
-      <input type="text" onChange={updateQueryString} />
-      <ul>
+    <MovieContainer>
+      <MovieInput type="text" onChange={updateQueryString} />
+      <MovieList>
         {movies.map((movie) => (
           <li key={movie.id}>
             <Link state={{ from: location }} to={`/movies/${movie.id}`}>
@@ -41,8 +43,8 @@ const Movies = () => {
             </Link>
           </li>
         ))}
-      </ul>
-    </div>
+      </MovieList>
+    </MovieContainer>
   );
 };
 

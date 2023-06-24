@@ -35,3 +35,19 @@ export const ContainerWrap = styled.div`
 export const ParagraphMovie = styled.p`
     color: #f3cba5;
 `;
+
+export const ListLink = styled.ul`
+    display: flex;
+    background-color: #453953;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-bottom: 50px;
+`;
+
+export const ItemLink = styled.li`
+    background-color: #975a5e;
+    margin-left: 30px;
+    padding:  10px 20px;
+    border-radius: 10px;
+`;

@@ -1,20 +1,30 @@
-import { useParams, Link, useLocation } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
-import { getMoviesById, getCast, getReviews } from "../../components/API/API";
-import Reviews from "../../components/Reviews/Review";
-import Cast from "../../components/Cast/Cast";
+import React, { useEffect, useState, useRef } from 'react';
+import { useParams, Link, useLocation, NavLink } from 'react-router-dom';
+import { getMoviesById, getCast, getReviews } from '../../components/API/API';
+import Reviews from '../../components/Reviews/Review';
+import Cast from '../../components/Cast/Cast';
 import { 
   ContainerMovie, 
   MovieTitle,
   MovieImg,
   ContainerWrap,
-  ParagraphMovie
- } from './ContainerSerch.styled';
+  ParagraphMovie,
+  ItemLink,
+  ListLink
+ } from './MovieDetails.styled';
+
+const linkStyle = {
+  color: '#f3cba5',
+  textDecoration: 'none',
+  ':hover': {
+    color: 'red',
+  },
+};
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? "/movies");
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
   const [movieDetails, setMovieDetails] = useState(null);
   const [cast, setCast] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -27,7 +37,7 @@ const MovieDetails = () => {
         const movieResponse = await getMoviesById(movieId);
         setMovieDetails(movieResponse.data);
       } catch (error) {
-        console.log("Помилка отримання деталей фільму:", error);
+        console.log('Помилка отримання деталей фільму:', error);
       }
     };
 
@@ -36,7 +46,7 @@ const MovieDetails = () => {
         const castResponse = await getCast(movieId);
         setCast(castResponse.data.cast);
       } catch (error) {
-        console.log("Помилка отримання акторського складу:", error);
+        console.log('Помилка отримання акторського складу:', error);
       }
     };
 
@@ -45,7 +55,7 @@ const MovieDetails = () => {
         const reviewsResponse = await getReviews(movieId);
         setReviews(reviewsResponse.data.results);
       } catch (error) {
-        console.log("Помилка отримання відгуків:", error);
+        console.log('Помилка отримання відгуків:', error);
       }
     };
 
@@ -68,6 +78,7 @@ const MovieDetails = () => {
 
   return (
     <div>
+      <Link to={backLinkLocationRef.current}>Back</Link>
       {movieDetails ? (
         <ContainerMovie>
             <MovieImg
@@ -85,13 +96,17 @@ const MovieDetails = () => {
         <p>Loading...</p>
       )}
 
-      {showCast && cast.length > 0 && <Cast cast={cast} />}
+      {showCast && cast.length > 0 && <Cast cast={cast} showCast={showCast} />}
 
-      {showReviews && reviews.length > 0 && <Reviews reviews={reviews} />} 
-
-      <Link to={`/movies/${movieId}/cast`} onClick={handleShowCast}>Переглянути акторський склад</Link>
-      <Link to={`/movies/${movieId}/reviews`} onClick={handleShowReviews}>Переглянути відгуки</Link> 
-      <Link to={backLinkLocationRef.current}>Назад до сторінки колекції</Link>
+      {showReviews && reviews.length > 0 && <Reviews reviews={reviews} showReviews={showReviews} />} 
+        <ListLink>
+          <ItemLink>
+            <NavLink to={`/movies/${movieId}/cast`} onClick={handleShowCast} style={linkStyle}>Cast</NavLink>
+          </ItemLink>
+          <ItemLink>
+            <NavLink to={`/movies/${movieId}/reviews`} onClick={handleShowReviews} style={linkStyle}>Reviews</NavLink>
+          </ItemLink>
+        </ListLink>
     </div>
   );
 };
