@@ -3,6 +3,7 @@ import { useParams, Link, useLocation, NavLink } from 'react-router-dom';
 import { getMoviesById, getCast, getReviews } from '../../components/API/API';
 import Reviews from '../../components/Reviews/Review';
 import Cast from '../../components/Cast/Cast';
+
 import { 
   ContainerMovie, 
   MovieTitle,
@@ -118,10 +119,20 @@ const MovieDetails = () => {
       {showReviews && reviews.length > 0 && <Reviews reviews={reviews} showReviews={showReviews} />} 
         <ListLink>
           <ItemLink>
-            <NavLink to={`/movies/${movieId}/cast`} onClick={handleShowCast} style={linkStyle}>Cast</NavLink>
+            <NavLink 
+              to={`/movies/${movieId}/cast`} 
+              onClick={handleShowCast} 
+              style={linkStyle}>
+                Cast
+            </NavLink>
           </ItemLink>
           <ItemLink>
-            <NavLink to={`/movies/${movieId}/reviews`} onClick={handleShowReviews} style={linkStyle}>Reviews</NavLink>
+            <NavLink 
+              to={`/movies/${movieId}/reviews`} 
+              onClick={handleShowReviews} 
+              style={linkStyle}>
+                Reviews
+            </NavLink>
           </ItemLink>
         </ListLink>
     </div>
