@@ -1,6 +1,17 @@
 import { Outlet, NavLink } from "react-router-dom";
 import { LeyoutList, LeyoutItem } from './Leyout.styled';
 
+const StyledNavLink = {
+    color: '#453953', 
+    textDecoration: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '10px',
+    fontSize: '20px',
+    fontWeight: '600'
+}
+
 const Leyout = () => {
     return <div>
         <nav>
@@ -8,32 +19,14 @@ const Leyout = () => {
                 <LeyoutItem>
                     <NavLink 
                         to="/" 
-                        style={{ 
-                            color: '#453953', 
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            padding: '10px',
-                            fontSize: '20px',
-                            fontWeight: '600'
-                        }}>
+                        style={StyledNavLink}>
                             Home
                     </NavLink>
                 </LeyoutItem>
                 <LeyoutItem>
                     <NavLink 
                         to="/movies" 
-                        style={{ 
-                            color: '#453953', 
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            padding: '10px',
-                            fontSize: '20px',
-                            fontWeight: '600'
-                        }}>
+                        style={StyledNavLink}>
                             Movies
                     </NavLink>
                 </LeyoutItem>

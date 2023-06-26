@@ -1,5 +1,6 @@
 import React from "react";
 import { ContainerReviews, ReviewsTitle, ReviewsAuthor, ReviewsList, ReviewsContent } from './Reviews.styled.jsx'
+import PropTypes from "prop-types";
 
 const Reviews = ({ reviews }) => {
   return (
@@ -15,6 +16,16 @@ const Reviews = ({ reviews }) => {
       </ul>
     </ContainerReviews>
   );
+};
+
+Reviews.propTypes = {
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      author: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Reviews;

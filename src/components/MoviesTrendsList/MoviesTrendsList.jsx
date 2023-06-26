@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { getTrendsDayMovies } from '../API/API';
 import { Link } from 'react-router-dom';
 import { 
@@ -9,8 +10,10 @@ import {
     MovieTrendTitle,
     MovieTitle 
 } from './MoviesTrendsListStyled';
+
 const MoviesTrendsList = () => {
   const [movies, setMovies] = useState([]);
+
   useEffect(() => {
     const fetchTrendsDayMovies = async () => {
       try {
@@ -21,8 +24,10 @@ const MoviesTrendsList = () => {
         console.error('Error fetching trend day movies:', error);
       }
     };
+
     fetchTrendsDayMovies();
   }, []);
+
   return (
     <ContainerMovie>
       <MovieTitle>Trending Movies Today</MovieTitle>
@@ -42,4 +47,15 @@ const MoviesTrendsList = () => {
     </ContainerMovie>
   );
 };
+
+MoviesTrendsList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string,
+      title: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
+
 export default MoviesTrendsList;

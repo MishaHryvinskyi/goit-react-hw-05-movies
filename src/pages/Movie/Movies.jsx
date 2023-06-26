@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { getSearchMovies } from "../../components/API/API";
 import { MovieContainer, MovieList, MovieInput, MovieListItem } from './Movies.styled';
 
-
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
