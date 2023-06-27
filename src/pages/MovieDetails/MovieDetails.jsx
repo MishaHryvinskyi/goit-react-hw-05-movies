@@ -23,6 +23,18 @@ const linkStyle = {
   padding: '10px'
 };
 
+const StyleLink = {
+  color: '#453953', 
+  textDecoration: 'none',
+  padding: '10px',
+  backgroundColor: '#f3cba5',
+  width: '100px',
+  fontSize: '20px',
+  fontWeight: '600',
+  borderRadius: '10px',
+  textAlign: 'center'
+};
+
 const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
@@ -72,10 +84,12 @@ const MovieDetails = () => {
 
   const handleShowCast = () => {
     setShowCast(true);
+    setShowReviews(false); 
   };
 
   const handleShowReviews = () => {
-    setShowReviews(true); 
+    setShowReviews(true);
+    setShowCast(false); // 
   };
 
   return (
@@ -83,28 +97,18 @@ const MovieDetails = () => {
       <ContainerLink>
         <Link 
           to={backLinkLocationRef.current} 
-          style={{ 
-            color: '#453953', 
-            textDecoration: 'none',
-            padding: '10px',
-            backgroundColor: '#f3cba5',
-            width: '100px',
-            fontSize: '20px',
-            fontWeight: '600',
-            borderRadius: '10px',
-            textAlign: 'center' 
-            }}>
+          style={StyleLink}>
               Back
         </Link>
       </ContainerLink>
       {movieDetails ? (
         <ContainerMovie>
-            <MovieImg
-              src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
-              alt={movieDetails.title}
-            />
+          <MovieImg
+            src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
+            alt={movieDetails.title}
+          />
           <ContainerWrap>
-          <MovieTitle>{movieDetails.title}</MovieTitle>
+            <MovieTitle>{movieDetails.title}</MovieTitle>
             <ParagraphMovie><b>Review:</b> {movieDetails.overview}</ParagraphMovie>
             <ParagraphMovie><b>Rating:</b>Rating: {movieDetails.vote_average}</ParagraphMovie>
             <ParagraphMovie><b>Release date:</b> {movieDetails.release_date}</ParagraphMovie>
@@ -114,27 +118,30 @@ const MovieDetails = () => {
         <p>Loading...</p>
       )}
 
+      <ListLink>
+        <ItemLink>
+          <NavLink 
+            to={`/movies/${movieId}/cast`} 
+            onClick={handleShowCast} 
+            style={linkStyle}
+            isActive={(match, location) => match || location.pathname === `/movies/${movieId}/cast`}>
+              Cast
+          </NavLink>
+        </ItemLink>
+        <ItemLink>
+          <NavLink 
+            to={`/movies/${movieId}/reviews`} 
+            onClick={handleShowReviews} 
+            style={linkStyle}
+            isActive={(match, location) => match || location.pathname === `/movies/${movieId}/reviews`}>
+              Reviews
+          </NavLink>
+        </ItemLink>
+      </ListLink>
+
       {showCast && cast.length > 0 && <Cast cast={cast} showCast={showCast} />}
 
       {showReviews && reviews.length > 0 && <Reviews reviews={reviews} showReviews={showReviews} />} 
-        <ListLink>
-          <ItemLink>
-            <NavLink 
-              to={`/movies/${movieId}/cast`} 
-              onClick={handleShowCast} 
-              style={linkStyle}>
-                Cast
-            </NavLink>
-          </ItemLink>
-          <ItemLink>
-            <NavLink 
-              to={`/movies/${movieId}/reviews`} 
-              onClick={handleShowReviews} 
-              style={linkStyle}>
-                Reviews
-            </NavLink>
-          </ItemLink>
-        </ListLink>
     </div>
   );
 };

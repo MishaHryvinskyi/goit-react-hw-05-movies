@@ -3,6 +3,14 @@ import { useState, useEffect } from "react";
 import { getSearchMovies } from "../../components/API/API";
 import { MovieContainer, MovieList, MovieInput, MovieListItem } from './Movies.styled';
 
+const StyledLink = {
+  color: '#f3cba5', 
+  textDecoration: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
+}
+
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -44,13 +52,7 @@ const Movies = () => {
             <Link 
               state={{ from: location }} 
               to={`/movies/${movie.id}`} 
-              style={{ 
-                color: '#f3cba5', 
-                textDecoration: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
+              style={StyledLink}>
                 {movie.title}
             </Link>
           </MovieListItem>

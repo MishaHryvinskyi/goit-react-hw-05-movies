@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { MainContainer } from './App.styed';
 
-const Home = React.lazy(() => import('../pages/Home'));
+const Home = React.lazy(() => import('../pages/Home/Home'));
 const Movies = React.lazy(() => import('../pages/Movie/Movies'));
 const MovieDetails = React.lazy(() => import('../pages/MovieDetails/MovieDetails'));
 const Cast = React.lazy(() => import('../components/Cast/Cast'));
