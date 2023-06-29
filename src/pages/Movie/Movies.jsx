@@ -1,34 +1,26 @@
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { getSearchMovies } from "../../components/API/API";
-import { MovieContainer, MovieList, MovieInput, MovieListItem } from './Movies.styled';
-
-const StyledLink = {
-  color: '#f3cba5', 
-  textDecoration: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
-}
+import { getSearchMovies } from "../../services/api";
+import { MovieContainer, MovieInput } from './Movies.styled';
+import  ListMovie  from '../../components/ListMovie/ListMovie';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
-  const movieId = searchParams.get("movieId") ?? "";
+  const query = searchParams.get("query") ?? "";
 
   const updateQueryString = (e) => {
     const movieIdValue = e.target.value;
     if (movieIdValue === "") {
       return setSearchParams({});
     }
-    setSearchParams({ movieId: movieIdValue });
+    setSearchParams({ query: movieIdValue });
   };
 
   useEffect(() => {
     const searchMovies = async () => {
       try {
-        const response = await getSearchMovies(movieId);
+        const response = await getSearchMovies(query);
         const moviesData = response.data.results;
         setMovies(moviesData);
       } catch (error) {
@@ -36,8 +28,12 @@ const Movies = () => {
       }
     };
 
-    searchMovies();
-  }, [movieId]);
+    const debounceSearch = setTimeout(() => {
+      searchMovies();
+    }, 500); 
+
+    return () => clearTimeout(debounceSearch);
+  }, [query]);
 
   return (
     <MovieContainer>
@@ -46,18 +42,7 @@ const Movies = () => {
         onChange={updateQueryString} 
         placeholder="enter movie" 
       />
-      <MovieList>
-        {movies.map((movie) => (
-          <MovieListItem key={movie.id}>
-            <Link 
-              state={{ from: location }} 
-              to={`/movies/${movie.id}`} 
-              style={StyledLink}>
-                {movie.title}
-            </Link>
-          </MovieListItem>
-        ))}
-      </MovieList>
+      <ListMovie movies={movies} />
     </MovieContainer>
   );
 };

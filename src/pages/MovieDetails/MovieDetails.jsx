@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams, Link, useLocation, NavLink } from 'react-router-dom';
-import { getMoviesById, getCast, getReviews } from '../../components/API/API';
+import { useParams } from 'react-router-dom';
+import { getMoviesById, getCast, getReviews } from '../../services/api';
 import Reviews from '../../components/Reviews/Review';
 import Cast from '../../components/Cast/Cast';
-
 import { 
   ContainerMovie, 
   MovieTitle,
@@ -12,33 +11,14 @@ import {
   ParagraphMovie,
   ItemLink,
   ListLink,
-  ContainerLink
+  ContainerLink,
+  LinkBack,
+  DitailsLink
  } from './MovieDetails.styled';
-
-const linkStyle = {
-  color: '#f3cba5',
-  textDecoration: 'none',
-  fontSize: '20',
-  fontWeight: '600',
-  padding: '10px'
-};
-
-const StyleLink = {
-  color: '#453953', 
-  textDecoration: 'none',
-  padding: '10px',
-  backgroundColor: '#f3cba5',
-  width: '100px',
-  fontSize: '20px',
-  fontWeight: '600',
-  borderRadius: '10px',
-  textAlign: 'center'
-};
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
+  const backLinkLocationRef = useRef('/');
   const [movieDetails, setMovieDetails] = useState(null);
   const [cast, setCast] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -89,17 +69,16 @@ const MovieDetails = () => {
 
   const handleShowReviews = () => {
     setShowReviews(true);
-    setShowCast(false); // 
+    setShowCast(false);
   };
 
   return (
     <div>
       <ContainerLink>
-        <Link 
-          to={backLinkLocationRef.current} 
-          style={StyleLink}>
+        <LinkBack 
+          to={backLinkLocationRef.current}>
               Back
-        </Link>
+        </LinkBack>
       </ContainerLink>
       {movieDetails ? (
         <ContainerMovie>
@@ -120,22 +99,20 @@ const MovieDetails = () => {
 
       <ListLink>
         <ItemLink>
-          <NavLink 
+          <DitailsLink 
             to={`/movies/${movieId}/cast`} 
             onClick={handleShowCast} 
-            style={linkStyle}
             isActive={(match, location) => match || location.pathname === `/movies/${movieId}/cast`}>
               Cast
-          </NavLink>
+          </DitailsLink>
         </ItemLink>
         <ItemLink>
-          <NavLink 
+          <DitailsLink 
             to={`/movies/${movieId}/reviews`} 
             onClick={handleShowReviews} 
-            style={linkStyle}
             isActive={(match, location) => match || location.pathname === `/movies/${movieId}/reviews`}>
               Reviews
-          </NavLink>
+          </DitailsLink>
         </ItemLink>
       </ListLink>
 

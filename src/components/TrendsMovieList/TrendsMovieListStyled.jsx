@@ -1,4 +1,9 @@
 import styled from "@emotion/styled";
+import { NavLink } from 'react-router-dom';
+
+export const MovieLink = styled(NavLink)`
+    text-decoration: none;
+`;
 
 export const MovieTitle = styled.h2`
     text-align: center;
@@ -59,4 +64,8 @@ export const MovieTrendTitle = styled.h4`
     color: #f3cba5;
     text-align: center;
     margin-bottom:10px;
+`;
+
+export const MainContainer = styled.div`
+    background-color: #453953;
 `;

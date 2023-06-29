@@ -1,4 +1,34 @@
 import styled from "@emotion/styled";
+import { NavLink } from 'react-router-dom';
+
+export const LinkBack = styled(NavLink)`
+    color: #453953; 
+    text-decoration: none;
+    padding: 10px;
+    background-color: #f3cba5;
+    width: 100px;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+
+    &:hover {
+        background-color: #a55233;
+        transform: scale(1.05);
+        color: #f3cba5;
+        box-shadow: -1px 1px 29px -10px rgba(211, 214, 219, 1);
+    -moz-box-shadow: -1px 1px 29px -10px rgba(211, 214, 219, 1);
+    }
+`;
+
+export const DitailsLink = styled(NavLink)`
+    color: #f3cba5;
+    text-decoration: none;
+    font=size: 20;
+    font-weight: 600;
+    padding: 10px;
+`;
 
 export const ContainerMovie = styled.div`
     display: flex;
