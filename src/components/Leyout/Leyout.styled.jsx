@@ -38,4 +38,5 @@ export const LeyoutList = styled.ul`
     justify-content: center;
     padding-bottom: 30px;
     padding-top: 30px;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 `;
