@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { getMoviesById, getCast, getReviews } from '../../services/api';
 import Reviews from '../../components/Reviews/Review';
 import Cast from '../../components/Cast/Cast';
@@ -15,10 +15,12 @@ import {
   LinkBack,
   DitailsLink
  } from './MovieDetails.styled';
+ import { HiArrowLeft } from "react-icons/hi";
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const backLinkLocationRef = useRef('/');
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const [movieDetails, setMovieDetails] = useState(null);
   const [cast, setCast] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -77,7 +79,7 @@ const MovieDetails = () => {
       <ContainerLink>
         <LinkBack 
           to={backLinkLocationRef.current}>
-              Back
+              <HiArrowLeft style={{ marginRight: '20px' }} /> Back
         </LinkBack>
       </ContainerLink>
       {movieDetails ? (

@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 import { NavLink } from 'react-router-dom';
 
 export const LinkBack = styled(NavLink)`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #453953; 
     text-decoration: none;
     padding: 10px;
@@ -28,6 +31,7 @@ export const DitailsLink = styled(NavLink)`
     font=size: 20;
     font-weight: 600;
     padding: 10px;
+    align-items: center;
 `;
 
 export const ContainerMovie = styled.div`
