@@ -92,8 +92,8 @@ const MovieDetails = () => {
           />
           <ContainerWrap>
             <MovieTitle>{movieDetails.title}</MovieTitle>
-            <ParagraphMovie><b>Review:</b> {movieDetails.overview}</ParagraphMovie>
-            <ParagraphMovie><b>Rating:</b>Rating: {movieDetails.vote_average}</ParagraphMovie>
+            <ParagraphMovie><b>Description:</b> {movieDetails.overview}</ParagraphMovie>
+            <ParagraphMovie><b>Rating:</b> {movieDetails.vote_average}</ParagraphMovie>
             <ParagraphMovie><b>Release date:</b> {movieDetails.release_date}</ParagraphMovie>
           </ContainerWrap>
         </ContainerMovie>
