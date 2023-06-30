@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { LeyoutList, StyledNavLink } from './Leyout.styled';
+import { RiHome2Line, RiFilmLine } from "react-icons/ri";
 
 const Leyout = () => {
     return <div>
@@ -8,12 +9,12 @@ const Leyout = () => {
                 <LeyoutList>
                     <li>
                         <StyledNavLink to="/">
-                                Home
+                               <RiHome2Line style={{ marginRight: '10px'  }}/> Home
                         </StyledNavLink>
                     </li>
                     <li>
                         <StyledNavLink to="/movies">
-                                Movies
+                                Movies <RiFilmLine style={{ marginLeft: '10px'  }} />
                         </StyledNavLink>
                     </li>
                 </LeyoutList>

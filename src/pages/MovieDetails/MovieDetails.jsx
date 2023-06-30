@@ -16,6 +16,8 @@ import {
   DitailsLink
  } from './MovieDetails.styled';
  import { HiArrowLeft } from "react-icons/hi";
+ import { RiQuestionnaireLine, RiTeamLine } from "react-icons/ri";
+ 
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -105,7 +107,7 @@ const MovieDetails = () => {
             to={`/movies/${movieId}/cast`} 
             onClick={handleShowCast} 
             isActive={(match, location) => match || location.pathname === `/movies/${movieId}/cast`}>
-              Cast
+             <RiTeamLine style={{ marginRight: '10px' }}/> Cast
           </DitailsLink>
         </ItemLink>
         <ItemLink>
@@ -113,7 +115,7 @@ const MovieDetails = () => {
             to={`/movies/${movieId}/reviews`} 
             onClick={handleShowReviews} 
             isActive={(match, location) => match || location.pathname === `/movies/${movieId}/reviews`}>
-              Reviews
+              Reviews <RiQuestionnaireLine  style={{ marginLeft: '10px' }}/>
           </DitailsLink>
         </ItemLink>
       </ListLink>

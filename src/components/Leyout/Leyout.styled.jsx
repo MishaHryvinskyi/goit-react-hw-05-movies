@@ -12,7 +12,7 @@ export const StyledNavLink = styled(NavLink)`
     font-weight: 600;
 
     background-color: #f3cba5;
-    width: 80px;
+    width: 150px;
     margin-right: 40px;
     padding: 15px 10px;
     align-items: center;
